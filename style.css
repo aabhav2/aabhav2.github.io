@@ -1,0 +1,11 @@
+body {
+  font-family: sans-serif;
+  padding: 2em;
+  background: #f7f7f7;
+}
+#chart {
+  margin-top: 20px;
+}
+button {
+  margin-top: 20px;
+}
