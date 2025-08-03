@@ -77,6 +77,7 @@ function showScene2(data) {
 
 
 function showScene3(data) {
+  function showScene3(data) {
   const grouped = d3.groups(data, d => Math.floor(d.Year / 10) * 10);
   const avgData = grouped.map(([decade, values]) => ({
     Decade: decade,
@@ -87,6 +88,8 @@ function showScene3(data) {
                 .append("svg")
                 .attr("width", 800)
                 .attr("height", 400);
+
+  const tooltip = d3.select("body").append("div").attr("class", "tooltip");
 
   const margin = {top: 20, right: 30, bottom: 30, left: 50},
         width = 800 - margin.left - margin.right,
@@ -112,7 +115,18 @@ function showScene3(data) {
     .attr("y", d => y(d.AvgAnomaly))
     .attr("width", x.bandwidth())
     .attr("height", d => height - y(d.AvgAnomaly))
-    .attr("fill", "orange");
+    .attr("fill", "orange")
+    .on("mouseover", (event, d) => {
+      tooltip.style("display", "block")
+             .html(`<strong>Decade:</strong> ${d.Decade}s<br><strong>Avg Anomaly:</strong> ${d.AvgAnomaly.toFixed(2)}°C`);
+    })
+    .on("mousemove", (event) => {
+      tooltip.style("left", (event.pageX + 10) + "px")
+             .style("top", (event.pageY - 28) + "px");
+    })
+    .on("mouseout", () => {
+      tooltip.style("display", "none");
+    });
 
   g.append("g")
    .attr("transform", `translate(0,${height})`)
