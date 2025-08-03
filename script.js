@@ -1,5 +1,4 @@
-let currentScene =0;
-d3.csv("climate_anomalies.csv").then(data => {
+let currentScene =0;d3.csv("climate_anomalies.csv").then(data => {
   data.forEach(d => {
     d.Year = +d.Year;
     d.Anomaly = +d.Anomaly;
@@ -77,7 +76,6 @@ function showScene2(data) {
 
 
 function showScene3(data) {
-  function showScene3(data) {
   const grouped = d3.groups(data, d => Math.floor(d.Year / 10) * 10);
   const avgData = grouped.map(([decade, values]) => ({
     Decade: decade,

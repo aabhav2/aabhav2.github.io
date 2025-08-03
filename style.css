@@ -9,17 +9,3 @@ body {
 button {
   margin-top: 20px;
 }
-.tooltip {
-  position: absolute;
-  background-color: white;
-  border: 1px solid #ccc;
-  padding: 6px;
-  font-size: 12px;
-  pointer-events: none;
-  display: none;
-}
-rect:hover {
-  stroke: #000;
-  stroke-width: 1px;
-  opacity: 0.85;
-}
